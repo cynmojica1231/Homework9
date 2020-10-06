@@ -1,0 +1,35 @@
+body {
+  background-color: floralwhite;
+  font-family: "Work Sans", sans-serif;
+  color: #18202c;
+  padding-bottom: 75px;
+}
+
+h1 {
+  font-size: 60px;
+}
+
+.jumbotron {
+  border-radius: 0;
+}
+
+.employee-card {
+  min-width: 275px;
+  max-width: 325px;
+  margin: 50px 25px;
+}
+
+.card-header {
+  background-color: steelblue;
+  border-bottom-style: none;
+  height: 130px;
+  padding: 20px;
+}
+
+h2 {
+  font-weight: 500;
+}
+
+h3 {
+  font-size: 18px;
+}
