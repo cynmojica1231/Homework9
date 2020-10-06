@@ -10,26 +10,88 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
-
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+
+const employees = [];
+async function createManager() {
+    let managerResponses = await inquirer.prompt(questions.manager);
+    let newManager = new Manager
+        (managerResponses.mgrName,
+            managerResponses.mgrId,
+            managerResponses.mgrEmail,
+            managerResponses.mgrOffice);
+
+    employees.push(newManager);
+    console.log("Thanks! We've added a new manager to the team: ", newManager);
+};
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
 // generate and return a block of HTML including templated divs for each employee!
+async function confirmEmployee() {
+    let confirmEmployee = await inquirer.prompt(questions.create);
+    switch (confirmEmployee.confirmEmp) {
+        case false:
+            console.log("Thank you for your input so far. Here are your team members: ", employees);
+            console.log('Generating your HTML page next...');
+            return;
+        case true:
+            await createEmployee();
+    };
+};
 
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
+async function createEmployee() {
+    let employeeRole = await inquirer.prompt(questions.employee);
+    switch (employeeRole.empRole) {
+        case 'Engineer':
+            let engResponses = await inquirer.prompt(questions.engineer);
+            let newEngineer = new Engineer
+                (engResponses.engName,
+                    engResponses.engId,
+                    engResponses.engEmail,
+                    engResponses.engGithub);
+            employees.push(newEngineer);
+            console.log("Thanks! We've added a new engineer to the team: ", newEngineer);
+            await confirmEmployee();
+            break;
+        case 'Intern':
+            let internResponses = await inquirer.prompt(questions.intern);
+            let newIntern = new Intern
+                (internResponses.internName,
+                    internResponses.internId,
+                    internResponses.internEmail,
+                    internResponses.internSchool);
+            employees.push(newIntern);
+            console.log("Thanks! We've added a new intern to the team: ", newIntern);
+            await confirmEmployee();
+    };
+};
+async function init() {
+    try {
+        await createManager();
 
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
+        // Next, ask if they'd like to create another team member and createEmployee() within confirmEmployee function
+        await confirmEmployee();
+    } catch (error) {
+        console.log(error);
+    };
+    try {
+        /* After the user has input all employees desired, call the render function and pass an array containing all employee objects.
+        The render function will generate and return a block of HTML including templated divs for each employee. */
+        let renderedHTML = render(employees);
+        /* Take HTML returned from render() function and write to file named team.html in the docs folder */
+        // I have named it docs instead of output so that the page appears on GitHub pages
+        fs.writeFileSync('./docs/index.html', renderedHTML);
 
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
+        console.log('Success! Your HTML page has been generated in the docs folder.')
+
+    } catch (error) {
+        console.log(error);
+    }
+
+};
+
+init();
+
+ 
