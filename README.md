@@ -15,4 +15,4 @@ As a manager I want to generate a webpage that displays my team's basic info so 
 The project must prompt the user to build an engineering team. An engineering
 team consists of a manager, and any number of engineers and interns.
 
-![Gif demo of team-page-generator CLI](images/teampage-demo.gif)
+![Gif demo of team-page-generator CLI](assets/homework-demo.gif)
