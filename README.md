@@ -32,3 +32,6 @@ To run tests, run the following command:
 ```
 npm test
 ```
+## License
+
+This project is licensed under the MIT license.
