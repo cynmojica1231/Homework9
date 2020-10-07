@@ -50,8 +50,7 @@ async function prompt() {
           type: "list",
           name: "role",
           message: "What is your title?:",
-          choices: ["Engineer", "Intern", "Manager"],
-        },
+          choices: ["Manager", "Engineer", "Intern"],
       ]);
 
       let response2 = "";
@@ -60,7 +59,7 @@ async function prompt() {
           {
             type: "input",
             name: "x",
-            message: "What is the employee's github username?:",
+            message: "What is your github username?:",
           },
         ]);
         const engineer = new Engineer(
@@ -75,7 +74,7 @@ async function prompt() {
           {
             type: "input",
             name: "x",
-            message: "What school is the employee attending?:",
+            message: "What school do you attend?:",
           },
         ]);
         const intern = new Intern(
@@ -90,7 +89,7 @@ async function prompt() {
           {
             type: "input",
             name: "x",
-            message: "What is the employee's office number?:",
+            message: "What is your office number?:",
           },
         ]);
         const manager = new Manager(
