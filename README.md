@@ -9,3 +9,10 @@ As a manager I want to generate a webpage that displays my team's basic info so 
 ### Site Images
 
 ![Gif demo of README-generator](assets/homework-screenshot.jpg)
+
+### User input
+
+The project must prompt the user to build an engineering team. An engineering
+team consists of a manager, and any number of engineers and interns.
+
+![Gif demo of team-page-generator CLI](images/teampage-demo.gif)
