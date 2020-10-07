@@ -16,3 +16,11 @@ The project must prompt the user to build an engineering team. An engineering
 team consists of a manager, and any number of engineers and interns.
 
 ![Gif demo of team-page-generator CLI](assets/homework-demo.gif)
+
+## Installation
+
+To install necessary dependencies, run the following command:
+
+```
+npm i
+```
